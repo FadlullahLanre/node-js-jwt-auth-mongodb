@@ -9,17 +9,20 @@ module.exports = function(app) {
     );
     next();
   });
-
+  // Get contents for public
   app.get("/api/test/all", controller.allAccess);
 
+  // Get contents for all users
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
+  // Get contents for moderators 
   app.get(
     "/api/test/mod",
     [authJwt.verifyToken, authJwt.isModerator],
     controller.moderatorBoard
   );
 
+  // Get contents for admin
   app.get(
     "/api/test/admin",
     [authJwt.verifyToken, authJwt.isAdmin],

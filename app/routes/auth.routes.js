@@ -1,3 +1,5 @@
+// Authorization routes
+
 const { verifySignUp } = require("../middlewares");
 const controller = require("../controllers/auth.controller");
 
@@ -9,7 +11,7 @@ module.exports = function(app) {
     );
     next();
   });
-
+  // Signup route
   app.post(
     "/api/auth/signup",
     [
@@ -18,6 +20,6 @@ module.exports = function(app) {
     ],
     controller.signup
   );
-
+  // Login route
   app.post("/api/auth/signin", controller.signin);
 };
